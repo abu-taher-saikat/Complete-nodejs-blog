@@ -12,6 +12,11 @@ dotenv.config({path : './config/config.env'});
 const connectDB = require('./config/db');
 connectDB();
 
+// Route files
+const blogs = require("./routes/blogs");
+const index = require("./routes/index");
+const users = require("./routes/users");
+
 const app = express();
 
 
@@ -22,31 +27,16 @@ app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
 
-// test route
-app.get('/', (req, res)=>{
-    res.render('index');
-})
-
-app.get('/about', (req, res)=>{
-    res.render('about');
-})
-app.get('/contact', (req, res)=>{
-    res.render('contact');
-})
-app.get('/blog', (req, res)=>{
-    res.render('blog');
-})
-
-app.get('/page', (req, res)=>{
-    res.render('page');
-})
-
-
 // Dev loggin middleware.
 if(process.env.NODE_ENV === 'development'){
     app.use(morgan('dev'));
 }
 
+
+// Mount routes
+app.use('/', index)
+app.use('/blog', blogs);
+// app.use('/users', users);
 
 
 
