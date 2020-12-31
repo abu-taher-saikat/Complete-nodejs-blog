@@ -2,5 +2,8 @@
 // @route  POST /auth/register
 // @access Public
 exports.register = async (req, res, next) => {
-    // res.render('blog');
+     console.log(req.body);
+    // console.log("router is calling here");
+    // res.redirect('/');
+
 }
