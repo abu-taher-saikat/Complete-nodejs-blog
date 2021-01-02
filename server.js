@@ -37,7 +37,11 @@ if(process.env.NODE_ENV === 'development'){
 // Mount routes
 app.use('/', index)
 app.use('/blog', blogs);
-app.use('/auth', auth)
+app.use('/auth', auth);
+
+app.get('/dashboard',(req, res)=>{
+    res.render('dashboard');
+})
 
 
 

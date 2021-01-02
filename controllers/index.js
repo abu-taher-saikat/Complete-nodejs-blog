@@ -2,14 +2,20 @@
 // @route  GET /
 // @access Public
 exports.getHomepage = async (req, res, next) => {
-    res.render('index');
+    const user = req.user;
+    res.render('index',{
+        user : user
+    });
 }
 
 // @desc   Get Contact Page
 // @route  GET /contact
 // @access Public
 exports.getContactpage = async (req, res, next) => {
-    res.render('contact');
+    const user = req.user;
+    res.render('contact',{
+        user : user
+    });
 }
 
 
@@ -17,7 +23,10 @@ exports.getContactpage = async (req, res, next) => {
 // @route  GET /about
 // @access Public
 exports.getAboutpage = async (req, res, next) => {
-    res.render('about');
+    const user = req.user;
+    res.render('about',{
+        user : user
+    });
 }
 
 
@@ -26,7 +35,10 @@ exports.getAboutpage = async (req, res, next) => {
 // @route  GET /about
 // @access Public
 exports.getLoginPage = async (req, res, next) => {
-    res.render('signin');
+    const user = req.user;
+    res.render('signin',{
+        user : user
+    });
 }
 
 
@@ -34,7 +46,10 @@ exports.getLoginPage = async (req, res, next) => {
 // @route  GET /about
 // @access Public
 exports.getRegisterPage = async (req, res, next) => {
-    res.render('signup');
+    const user = req.user;
+    res.render('signup',{
+        user : user
+    });
 }
 
 
