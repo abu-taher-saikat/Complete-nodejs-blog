@@ -1,11 +1,17 @@
+// const User = require("./../models/Users");
+const User = require('./../models/Users')
+
 // @desc   Get Homepage
 // @route  GET /
 // @access Public
 exports.getHomepage = async (req, res, next) => {
-    const user = req.user;
+    // const user = req.User;
+    // const user = await User.findById(req.user.id);
+    // console.log(user);  
     res.render('index',{
-        user : user
+        user : req.user
     });
+    // console.log(user);
 }
 
 // @desc   Get Contact Page

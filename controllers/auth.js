@@ -2,7 +2,8 @@
 const crypto = require('crypto');
 const ErrorResponse = require('./../utils/errorResponse');
 const asyncHandler = require('./../middleware/async');
-const User = require('../models/Users');
+// const User = require('../models/Users');
+const User = require('./../models/Users')
 
 // @desc   Register user
 // @route  POST /auth/register
@@ -19,7 +20,7 @@ exports.register = asyncHandler(async(req, res, next) => {
     // Create token
     // res.status(200).json({success : true, token});
     sendTokenResponse(user, 200, res);
-    res.redirect('/dashboard');
+    // res.redirect('/dashboard');
 });
 
 
@@ -57,7 +58,7 @@ exports.login = asyncHandler(async(req, res, next) => {
     // Create token
     // res.status(200).json({success : true, token});
     sendTokenResponse(user, 200, res);
-    res.redirect('/');
+    // res.redirect('/');
 });
 
 
@@ -66,7 +67,11 @@ exports.login = asyncHandler(async(req, res, next) => {
 // @access Private
 exports.getMe = asyncHandler(async(req, res, next)=>{
     const user = await User.findById(req.user.id);
-    console.log(user);
+    // console.log(user);
+    res.status(200).json({
+        success : true,
+        data : user
+    })
 })
 
 
@@ -84,16 +89,16 @@ const sendTokenResponse = (user, statusCode, res) => {
         options.secure = true
     }
 
-    // res
-    //     .status(statusCode)
-    //     .cookie('token', token, options)
-    //     .json({
-    //         success: true,
-    //         token
-    //     })
-
     res
         .status(statusCode)
         .cookie('token', token, options)
+        .json({
+            success: true,
+            token
+        })
+
+    // res
+    //     .status(statusCode)
+    //     .cookie('token', token, options)
         
 }

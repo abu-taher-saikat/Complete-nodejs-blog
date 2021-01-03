@@ -3,6 +3,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const colors = require("colors");
+const cookieParser = require('cookie-parser')
+
+// express ErrorHandler
+const errorHandler = require("./middleware/errror");
 // const cookieParser = require('cookie-parser');
 // const fileUpload  = require('express-fileupload');
 // Load env vars 
@@ -19,6 +23,11 @@ const auth = require("./routes/auth");
 // const users = require("./routes/users");
 
 const app = express();
+// Body parser
+app.use(express.json());
+// Cookie parser
+app.use(cookieParser())
+
 
 
 // Set Static folder
@@ -35,16 +44,23 @@ if(process.env.NODE_ENV === 'development'){
 
 
 // Mount routes
+app.use('/auth', auth);
 app.use('/', index)
 app.use('/blog', blogs);
-app.use('/auth', auth);
 
 app.get('/dashboard',(req, res)=>{
-    res.render('dashboard');
+    const user = req.user;
+    console.log(user);
+    console.log(user);
+    res.render('dashboard',{
+        user : user
+    });
 })
 
 
 
+// calling back error handler. you have to remember it's a middle ware.and middleware need to be call after calling routes , that;s why it's on the bottom of everything..
+app.use(errorHandler);
 const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT, () => {
