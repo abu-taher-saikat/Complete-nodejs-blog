@@ -5,6 +5,8 @@ const {
 const router = express.Router();
 // calling model here. 
 
+const {protect } = require('./../middleware/auth');
+
 
 router.route("/").get(getHomepage);
 router.route("/contact").get(getContactpage);

@@ -20,6 +20,7 @@ connectDB();
 const blogs = require("./routes/blogs");
 const index = require("./routes/index");
 const auth = require("./routes/auth");
+// const user = require("./routes/users");
 // const users = require("./routes/users");
 
 const app = express();
@@ -44,9 +45,11 @@ if(process.env.NODE_ENV === 'development'){
 
 
 // Mount routes
-app.use('/auth', auth);
 app.use('/', index)
+app.use('/auth', auth);
 app.use('/blog', blogs);
+// app.use('/user', user)
+
 
 app.get('/dashboard',(req, res)=>{
     const user = req.user;

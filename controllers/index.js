@@ -5,9 +5,6 @@ const User = require('./../models/Users')
 // @route  GET /
 // @access Public
 exports.getHomepage = async (req, res, next) => {
-    // const user = req.User;
-    // const user = await User.findById(req.user.id);
-    // console.log(user);  
     res.render('index',{
         user : req.user
     });
@@ -57,5 +54,7 @@ exports.getRegisterPage = async (req, res, next) => {
         user : user
     });
 }
+
+
 
 

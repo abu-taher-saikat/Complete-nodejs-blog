@@ -8,7 +8,7 @@ const {protect} = require('./../middleware/auth');
 // const { route } = require('./blogs');
 
 const router = express.Router();
-// calling model here. 
+// calling model here.  
 
 router.route("/register").post(register);
 router.route("/login").post(login);
